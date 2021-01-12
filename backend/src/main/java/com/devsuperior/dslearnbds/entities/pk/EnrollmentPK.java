@@ -1,4 +1,4 @@
-package com.example.demo.dslearnbds.entities.pk;
+package com.devsuperior.dslearnbds.entities.pk;
 
 import java.io.Serializable;
 
@@ -6,8 +6,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.example.demo.dslearnbds.entities.Offer;
-import com.example.demo.dslearnbds.entities.User;
+import com.devsuperior.dslearnbds.entities.Offer;
+import com.devsuperior.dslearnbds.entities.User;
 
 @Embeddable
 public class EnrollmentPK implements Serializable{

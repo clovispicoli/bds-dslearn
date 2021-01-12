@@ -1,4 +1,4 @@
-package com.example.demo.dslearnbds.entities;
+package com.devsuperior.dslearnbds.entities;
 
 import java.time.Instant;
 
@@ -7,7 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.example.demo.dslearnbds.entities.pk.EnrollmentPK;
+import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
 
 @Entity
 @Table(name = "tb_enrollment")

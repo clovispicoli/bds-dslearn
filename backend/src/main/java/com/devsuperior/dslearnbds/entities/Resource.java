@@ -1,4 +1,4 @@
-package com.example.demo.dslearnbds.entities;
+package com.devsuperior.dslearnbds.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.example.demo.dslearnbds.entities.enums.ResourceType;
+import com.devsuperior.dslearnbds.entities.enums.ResourceType;
 
 @Entity
 @Table(name = "tb_resource")
