@@ -21,47 +21,47 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_topic")
-public class Topic implements Serializable{
+public class Topic implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
- 	private String title;
- 	
- 	@Column(columnDefinition = "TEXT")
- 	private String body;
- 	
- 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
- 	private Instant moment;
- 	
- 	@ManyToOne
- 	@JoinColumn(name = "author_id")
- 	private User author;
- 	
- 	@ManyToOne
- 	@JoinColumn(name = "offer_id")
- 	private Offer offer;
- 	
- 	@ManyToOne
- 	@JoinColumn(name = "lesson_id")
- 	private Lesson lesson;
 
- 	@ManyToOne
- 	@JoinColumn(name = "reply_id")
- 	private Reply answer;
- 	
- 	@ManyToMany
- 	@JoinTable(name = "tb_topic_likes",
- 		joinColumns = @JoinColumn(name = "topic_id"),
- 		inverseJoinColumns = @JoinColumn(name = "user_id"))
- 	private Set<User> likes = new HashSet<>();
- 	
- 	@OneToMany(mappedBy = "topic")
- 	private List<Reply> replies = new ArrayList<>();
- 	
- 	public Topic() {
- 	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String title;
+
+	@Column(columnDefinition = "TEXT")
+	private String body;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant moment;
+	
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	private User author;
+	
+	@ManyToOne
+	@JoinColumn(name = "offer_id")
+	private Offer offer;
+	
+	@ManyToOne
+	@JoinColumn(name = "lesson_id")
+	private Lesson lesson;
+	
+	@ManyToOne
+	@JoinColumn(name = "reply_id")
+	private Reply answer;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_topic_likes",
+		joinColumns = @JoinColumn(name = "topic_id"),
+		inverseJoinColumns = @JoinColumn(name = "user_id"))	
+	private Set<User> likes = new HashSet<>();
+	
+	@OneToMany(mappedBy = "topic")
+	private List<Reply> replies = new ArrayList<>();
+	
+	public Topic() {
+	}
 
 	public Topic(Long id, String title, String body, Instant moment, User author, Offer offer, Lesson lesson) {
 		super();
@@ -129,22 +129,22 @@ public class Topic implements Serializable{
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
 	}
-	
+
 	public Set<User> getLikes() {
- 		return likes;
- 	}
-	
+		return likes;
+	}
+
 	public Reply getAnswer() {
- 		return answer;
- 	}
+		return answer;
+	}
 
- 	public void setAnswer(Reply answer) {
- 		this.answer = answer;
- 	}
+	public void setAnswer(Reply answer) {
+		this.answer = answer;
+	}
 
- 	public List<Reply> getReplies() {
- 		return replies;
- 	}
+	public List<Reply> getReplies() {
+		return replies;
+	}
 
 	@Override
 	public int hashCode() {

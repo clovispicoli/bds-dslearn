@@ -18,27 +18,27 @@ import com.devsuperior.dslearnbds.entities.enums.ResourceType;
 @Entity
 @Table(name = "tb_resource")
 public class Resource implements Serializable {
- 	private static final long serialVersionUID = 1L;
-
- 	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
- 	private String title;
- 	private String description;
- 	private Integer position;
- 	private String imgUri;
- 	private ResourceType type;
- 	
- 	@ManyToOne
- 	@JoinColumn(name = "offer_id")
- 	private Offer offer;
+	private String title;
+	private String description;
+	private Integer position;
+	private String imgUri;
+	private ResourceType type;
+	
+	@ManyToOne
+	@JoinColumn(name = "offer_id")
+	private Offer offer;
 
- 	@OneToMany(mappedBy = "resource")
- 	private List<Section> sections = new ArrayList<>();
- 	
- 	public Resource() {
- 	}
- 	
+	@OneToMany(mappedBy = "resource")
+	private List<Section> sections = new ArrayList<>();
+	
+	public Resource() {
+	}
+
 	public Resource(Long id, String title, String description, Integer position, String imgUri, ResourceType type,
 			Offer offer) {
 		super();
@@ -131,5 +131,4 @@ public class Resource implements Serializable {
 			return false;
 		return true;
 	}
- 	
 }

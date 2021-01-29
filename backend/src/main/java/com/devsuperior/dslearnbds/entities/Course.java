@@ -13,19 +13,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_course")
-public class Course implements Serializable{
+public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
- 	private String name;
- 	private String imgUri;
- 	private String imgGrayUri;
- 	
- 	@OneToMany(mappedBy = "course")
- 	private List<Offer> offers = new ArrayList<>();
- 	
+	private String name;
+	private String imgUri;
+	private String imgGrayUri;
+	
+	@OneToMany(mappedBy = "course")
+	private List<Offer> offers = new ArrayList<>();
+	
 	public Course() {
 	}
 
@@ -45,6 +45,14 @@ public class Course implements Serializable{
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getImgUri() {
 		return imgUri;
 	}
@@ -62,9 +70,9 @@ public class Course implements Serializable{
 	}
 
 	public List<Offer> getOffers() {
- 		return offers;
- 	}
-	
+		return offers;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,5 +97,4 @@ public class Course implements Serializable{
 			return false;
 		return true;
 	}
- 	
 }

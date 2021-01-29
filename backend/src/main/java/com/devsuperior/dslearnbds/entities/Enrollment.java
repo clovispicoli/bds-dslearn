@@ -24,25 +24,25 @@ public class Enrollment {
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant enrollMoment;
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant refundMoment;
- 	private boolean available;
- 	private boolean onlyUpdate;
- 	
- 	@ManyToMany(mappedBy = "enrollmentsDone")
- 	private Set<Lesson> lessonsDone = new HashSet<>();
- 	
- 	@OneToMany(mappedBy = "enrollment")
+	private boolean available;
+	private boolean onlyUpdate;
+
+	@ManyToMany(mappedBy = "enrollmentsDone")
+	private Set<Lesson> lessonsDone = new HashSet<>();
+	
+	@OneToMany(mappedBy = "enrollment")
 	private List<Deliver> deliveries = new ArrayList<>();
- 	
+	
 	public Enrollment() {
 	}
 
 	public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available,
 			boolean onlyUpdate) {
 		super();
-		id.setUser(user); 
+		id.setUser(user);
 		id.setOffer(offer);
 		this.enrollMoment = enrollMoment;
 		this.refundMoment = refundMoment;
@@ -51,21 +51,21 @@ public class Enrollment {
 	}
 
 	public User getStudent() {
- 		return id.getUser();
- 	}
+		return id.getUser();
+	}
+	
+	public void setStudent(User user) {
+		id.setUser(user);
+	}
 
- 	public void setStudent(User user) {
- 		id.setUser(user);
- 	}
-
- 	public Offer getOffer() {
- 		return id.getOffer();
- 	}
-
- 	public void setOffer(Offer offer) {
- 		id.setOffer(offer);
- 	}
-
+	public Offer getOffer() {
+		return id.getOffer();
+	}
+	
+	public void setOffer(Offer offer) {
+		id.setOffer(offer);
+	}
+	
 	public Instant getEnrollMoment() {
 		return enrollMoment;
 	}
@@ -97,7 +97,7 @@ public class Enrollment {
 	public void setOnlyUpdate(boolean onlyUpdate) {
 		this.onlyUpdate = onlyUpdate;
 	}
-	
+
 	public List<Deliver> getDeliveries() {
 		return deliveries;
 	}

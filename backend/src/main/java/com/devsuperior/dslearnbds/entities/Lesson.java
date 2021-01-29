@@ -22,35 +22,34 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_lesson")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Lesson implements Serializable{
+public abstract class Lesson implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
- 	private String title;
- 	private Integer position;
- 	
- 	@ManyToOne
- 	@JoinColumn(name = "section_id")
- 	private Section section;
- 	
- 	@OneToMany(mappedBy = "lesson")
+	private String title;
+	private Integer position;
+	
+	@ManyToOne
+	@JoinColumn(name = "section_id")
+	private Section section;
+	
+	@OneToMany(mappedBy = "lesson")
 	private List<Deliver> deliveries = new ArrayList<>();
- 	
- 	@ManyToMany
- 	@JoinTable(name = "tb_lessons_done",
- 		joinColumns = @JoinColumn(name = "lesson_id"),
- 		inverseJoinColumns = {
- 				@JoinColumn(name = "user_id"),
- 				@JoinColumn(name = "offer_id")
- 		}
- 	)
- 	
- 	private Set<Enrollment> enrollmentsDone = new HashSet<>();
- 	
- 	public Lesson() {
- 	}
+	
+	@ManyToMany
+	@JoinTable(name = "tb_lessons_done",
+		joinColumns = @JoinColumn(name = "lesson_id"),
+		inverseJoinColumns = {
+				@JoinColumn(name = "user_id"),
+				@JoinColumn(name = "offer_id")
+		}
+	)
+	private Set<Enrollment> enrollmentsDone = new HashSet<>();
+	
+	public Lesson() {
+	}
 
 	public Lesson(Long id, String title, Integer position, Section section) {
 		super();
@@ -93,13 +92,13 @@ public class Lesson implements Serializable{
 	}
 
 	public Set<Enrollment> getEnrollmentsDone() {
- 		return enrollmentsDone;
- 	}
+		return enrollmentsDone;
+	}
 
 	public List<Deliver> getDeliveries() {
 		return deliveries;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

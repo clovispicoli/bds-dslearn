@@ -34,18 +34,18 @@ public class Reply implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "topic_id")
 	private Topic topic;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "author_id")
 	private User author;
-
+	
 	@ManyToMany
 	@JoinTable(name = "tb_reply_likes",
 		joinColumns = @JoinColumn(name = "reply_id"),
 		inverseJoinColumns = @JoinColumn(name = "user_id")
 	)
 	private Set<User> likes = new HashSet<>();
-
+	
 	public Reply() {
 	}
 
