@@ -2,6 +2,9 @@ package com.devsuperior.dslearnbds.services;
 
 import java.time.Instant;
 
+import javax.annotation.PostConstruct;
+
+import org.hibernate.hql.internal.ast.tree.InitializeableNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,16 +15,25 @@ import com.devsuperior.dslearnbds.dto.NotificationDTO;
 import com.devsuperior.dslearnbds.entities.Deliver;
 import com.devsuperior.dslearnbds.entities.Notification;
 import com.devsuperior.dslearnbds.entities.User;
+import com.devsuperior.dslearnbds.observers.DeliverRevisionObserver;
 import com.devsuperior.dslearnbds.repositories.NotificationRepository;
 
 @Service
-public class NotificationService {
+public class NotificationService implements DeliverRevisionObserver{
 
 	@Autowired
 	private NotificationRepository repository;
 	
 	@Autowired
 	private AuthService authService;
+	
+	@Autowired
+	private DeliverService deliverService;
+	
+	@PostConstruct
+	private void InitializeableNode() {
+		deliverService.subscribeDeliverRevisionObserver(this);
+	}
 	
 	@Transactional(readOnly = true)
 	public Page<NotificationDTO> notificationsForCurrentUser(Boolean unreadOnly, Pageable pageable){
@@ -44,5 +56,10 @@ public class NotificationService {
 		
 		Notification notification = new Notification(null, text, moment, false, route, user);
 		repository.save(notification);
+	}
+
+	@Override
+	public void onSaveRevision(Deliver deliver) {
+		saveDeliverNotification(deliver);
 	}
 }		
